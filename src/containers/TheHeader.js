@@ -16,10 +16,11 @@ import {
 import CIcon from '@coreui/icons-react'
 
 // routes config
-import routes from '../routes'
+import routes from '../routes';
 
 
-import Search from '../views/dashboard/carte/Search'
+import Search from '../views/dashboard/carte/Search';
+
 
 const TheHeader = () => {
   const dispatch = useDispatch()
@@ -85,8 +86,11 @@ const TheHeader = () => {
         <TheHeaderDropdownTasks/>
         <TheHeaderDropdownMssg/>
         <TheHeaderDropdown/> */}
-                <Search />
-      </CHeaderNav>
+                <Search />  
+               
+            
+                
+           </CHeaderNav>
 
       <CSubheader className="px-3 justify-content-between">
         <CBreadcrumbRouter 

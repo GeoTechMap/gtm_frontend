@@ -2,58 +2,18 @@ import React, { useContext, useEffect } from "react";
 import { Tooltip, Marker, Popup, TileLayer, MapContainer, LayersControl, LayerGroup, useMap} from 'react-leaflet';
  //import {Icon } from 'leaflet';
 
-// import useSwr from 'swr';
-import Search from '../Search';
-
-// import { geosearch } from 'esri-leaflet-geocoder';
-// import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
-
-import { CounterContext } from "../../../../EssaisContext";
+import { EssaiContext } from "../../../../EssaisContext";
 import * as L from "leaflet";
 import { useState } from "react";
-// import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
-
-// import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch";
-// import "leaflet/dist/leaflet.css";
-// import "leaflet-geosearch/dist/geosearch.css";
-// function LeafletgeoSearch() {
-//   const map = useMap();
-//   useEffect(() => {
-//     // const provider = new OpenStreetMapProvider();
-
-//     // const searchControl = new GeoSearchControl({
-//     //   provider,
-//     //   // marker: {
-//     //   //   icon
-//     //   // }
-//     // });
-
-//     // map.addControl(searchControl);
-
-//     // return () => map.removeControl(searchControl);
-
-//     const control = geosearch();
-//     control.addTo(map);
-//     control.on('submit', handleOnSearchResults('submiiiiiiiiit'));
-
-//     return () => {
-//       control.off('results', handleOnSearchResults('resuuuuuult'));
-//     }
-//   }, []);
-
-//   const handleOnSearchResults = (data) =>{
-//     // console.log('Search results', data);
-//     console.log('Search results', data);
-//   }
-//    return null;
-// }
+import { Link } from 'react-router-dom';
 
 
-// const Carte = (props) => {
-  export default function CarteContent() { 
-    // useEffect(() => {
-    //   const control = geosearch();
-    // }, [])
+    const CarteContent = (props) => {
+    const [globalData, setGlonbalData] = useContext(EssaiContext);
+    const handleOnClick = (essai) => {
+      setGlonbalData({...globalData, 
+        selectedEssai: essai})
+    }
 
     const LeafIcon = L.Icon.extend({
       options: {}
@@ -78,7 +38,7 @@ import { useState } from "react";
     };
 
 
-    const [typeEssais, setTypeEssais] = useContext(CounterContext);
+    // const [typeEssais, setTypeEssais] = useContext(CounterContext);
     //const [ activeCrime, setActiveCrime] = React.useState(null);
   //   const fetcher = (...args) => fetch(...args).then(response => response.json());
   //   const url = 
@@ -121,7 +81,7 @@ import { useState } from "react";
           />
         </LayersControl.BaseLayer>
 
-{typeEssais.map((typeEssai, key) => (
+{globalData.essais.map((typeEssai, key) => (
   typeEssai.essais !== [] ? (
     < div key={key} >
     {/* Pour chaque type d'essai on crée un group et on ajoute tous les essais y relatif */}
@@ -133,10 +93,6 @@ import { useState } from "react";
             position={[essai.position.latitude, 
             essai.position.longitude]}
             icon={typeEssai.id == 4 ? blueIcon : greenIcon}
-            // onClick = {() => {
-            //     alert('okoko')
-            // }}
-      
             >
            <Popup 
               position={[essai.position.latitude, essai.position.longitude]}
@@ -153,6 +109,10 @@ import { useState } from "react";
                       <li><strong>Méthode:</strong> ...</li>
                       <li><strong>Résultat: </strong><a href={essai.fichier.lien}>Voir document</a></li>
                       <li><strong>Date de réalisation:</strong> {essai.createdDate}</li>
+                      <li onClick={() => handleOnClick(props.essai)}><Link 
+                      to={`/pdf/${essai.fichier.id}`} 
+                      >Voir PDF
+                      </Link></li>
                   </ul>
           </div>
          </Popup>
@@ -171,11 +131,10 @@ import { useState } from "react";
     )
     )} 
     </LayersControl>
-    {/* <LeafletgeoSearch /> */}
   </MapContainer>
   </div>
    
   )
 }
 
-// export default Carte
+export default CarteContent;

@@ -11,13 +11,13 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react';
 import { SearchTextField } from './SearchTextField';
-import { CounterContext } from "../../../EssaisContext";
-
+import { EssaiContext } from "../../../EssaisContext";
+import { FaSync } from "react-icons/fa";
 
 const Search = () => {
 
   const [searchContent, setSearchContent] = useState(null);
-  const [essais, setEssais] = useContext(CounterContext);
+  const [globalData, setGlobalData] = useContext(EssaiContext);
 
   const initVal ={
     searchContent: ''
@@ -27,6 +27,14 @@ const Search = () => {
     .max(45,"Maximum 45 caractères")
     .required("Champs obligatire"),        
   })
+
+  const reset = () => {
+    fetch('http://localhost:8080/api/type_essais')
+    .then((response) => response.json())
+    .then((json) => setGlobalData({...globalData,
+      essais:json}
+      )); 
+  }
   return (
     <Formik
     initialValues = {
@@ -39,7 +47,9 @@ const Search = () => {
 
       fetch(`http://localhost:8080/api/essais/search?mot_cle=${values.searchContent}`)
         .then((response) => response.json())
-        .then((json) => setEssais(json)); 
+        .then((json) => setGlobalData({...globalData,
+          essais:json}
+          )); 
 
 
 
@@ -62,7 +72,14 @@ const Search = () => {
                 <CButton color="info" type="submit" style={{borderRadius:'30px', height:'35px', width:'35px'}}>
                   <CIcon name="cil-magnifying-glass" />
                 </CButton>
+               
               </CInputGroupAppend>
+              <CButton color="warning" variant="outline" 
+              style={{borderRadius:'30px', height:'35px', width:'35px'}}
+              onClick={()=>{reset()}}
+              >
+                  <FaSync />
+                </CButton>
             </CInputGroup>
           </CCol>
         </CRow>

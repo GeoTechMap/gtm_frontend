@@ -11,15 +11,15 @@ import { icons } from './assets/icons'
 
 import { Provider } from 'react-redux'
 import store from './store'
-import { CounterContextProvider } from "./EssaisContext";
+import { EssaiContextProvider } from "./EssaisContext";
 
 React.icons = icons
 
 ReactDOM.render(
   <Provider store={store}>
-      <CounterContextProvider>
+      <EssaiContextProvider>
             <App/>
-      </CounterContextProvider>
+      </EssaiContextProvider>
   </Provider>,
   document.getElementById('root')
 );
