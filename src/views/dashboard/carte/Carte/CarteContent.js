@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Tooltip, Marker, Popup, TileLayer, MapContainer, LayersControl, LayerGroup, useMap} from 'react-leaflet';
+import { Tooltip, Marker, Popup, TileLayer, MapContainer, LayersControl, LayerGroup, useMap, Circle} from 'react-leaflet';
  //import {Icon } from 'leaflet';
 
 import { EssaiContext } from "../../../../EssaisContext";
@@ -101,15 +101,16 @@ import "./styles.scss";
     <MarkerClusterGroup
             spiderfyDistanceMultiplier={1}
             showCoverageOnHover={false}
-            maxClusterRadius={5}
+            maxClusterRadius={20}
           >
     {typeEssai.essais.map((essai, key) => (
       <div key={key}>
-     
+  
             <Marker
                 position={[essai.position.latitude, 
                 essai.position.longitude]}
-                // icon={typeEssai.id == 4 ? blueIcon : greenIcon}
+             
+                icon={typeEssai.id == 4 ? blueIcon : greenIcon}
                 >
               <Popup 
                   position={[essai.position.latitude, essai.position.longitude]}
@@ -153,7 +154,7 @@ import "./styles.scss";
     )} 
      
     </LayersControl>
-    <MarkerClusterGroup>
+    {/* <MarkerClusterGroup>
         <Marker position={[49.8397, 24.0297]} >
 
         <Popup 
@@ -165,7 +166,7 @@ import "./styles.scss";
                   ><div><h1>hciusdhdpiuhiudhiew</h1></div></Popup>  <Tooltip>lkkkllkkl</Tooltip>
                   </Marker>
         <Marker position={[51.5074, -0.0901]} />
-      </MarkerClusterGroup>
+      </MarkerClusterGroup> */}
   </MapContainer>
   </div>
    
