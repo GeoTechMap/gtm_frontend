@@ -35,17 +35,17 @@ export default function SinglePage(props) {
       </Document>
       <div>
         <p>
-          Page {pageNumber || (numPages ? 1 : "--")} of {numPages || "--"}
+          Page {pageNumber || (numPages ? 1 : "--")} sur {numPages || "--"}
         </p>
         <button type="button" disabled={pageNumber <= 1} onClick={previousPage}>
-          Previous
+          Précédent
         </button>
         <button
           type="button"
           disabled={pageNumber >= numPages}
           onClick={nextPage}
         >
-          Next
+          Suivant
         </button>
       </div>
     </>
