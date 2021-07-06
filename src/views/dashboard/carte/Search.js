@@ -29,11 +29,12 @@ const Search = () => {
   })
 
   const reset = () => {
-    fetch('http://localhost:8080/api/type_essais')
-    .then((response) => response.json())
-    .then((json) => setGlobalData({...globalData,
-      essais:json}
-      )); 
+    window.location.reload();
+    // fetch('http://localhost:8080/api/type_essais')
+    // .then((response) => response.json())
+    // .then((json) => setGlobalData({...globalData,
+    //   essais:json}
+    //   )); 
   }
   return (
     <Formik
