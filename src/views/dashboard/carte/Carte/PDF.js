@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import SinglePagePDFViewer from "./single-page";
 import AllPagesPDFViewer from "./all-pages";
 import "./styles.css";
+import GtmTab from "../../../../containers/GtmNav";
 
 const LoadFromBase64Example = ({match}) => {
 
@@ -40,6 +41,7 @@ const LoadFromBase64Example = ({match}) => {
        
         // </div>
         <div className="App">
+            <GtmTab />
         <SinglePagePDFViewer pdf={`data:application/pdf;base64,${data.base64File}`}  />
       </div>
   

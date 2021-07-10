@@ -7,6 +7,8 @@ import {
 } from '@coreui/react'
 import Test from "./Essai";
 import ClipLoader from "react-spinners/ClipLoader";
+import GtmTab from "../../containers/GtmNav";
+
 // import { EssaiContext } from "../../EssaisContext";
 
   const Essais = () => {
@@ -86,6 +88,8 @@ import ClipLoader from "react-spinners/ClipLoader";
 
   return (
     <div>
+< GtmTab />
+
           <a href="#" >   
             {/* <CButton variant="outline" color="success">Ajouter</CButton> */}
             <ClipLoader loading={loadingState} size={25} />
