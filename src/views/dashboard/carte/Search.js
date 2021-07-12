@@ -59,33 +59,30 @@ const Search = () => {
        { formik => (
 
        <Form>
-      <CContainer>
-        <CRow className="justify-content-center">
+
           <CCol md="12">     
             <CInputGroup className="input-prepend">
-              {/* <CInputGroupPrepend>
-                <CInputGroupText>
-                  <CIcon name="cil-magnifying-glass" />
-                </CInputGroupText>
-              </CInputGroupPrepend> */} 
-              <CInputGroupAppend>
-              <SearchTextField  name="searchContent" type="text" placeholder="Ex: Ouest" />
-                <CButton color="info" type="submit" style={{borderRadius:'30px', height:'35px', width:'35px'}}>
-                  <CIcon name="cil-magnifying-glass" />
-                </CButton>
-               
+
+              <CInputGroupAppend >
+                <SearchTextField  name="searchContent" type="text" placeholder="Ex: Ouest" />
+                <div style={{marginTop:20, marginLeft:5}}>
+                  <CButton color="dark" variant="outline" type="submit" style={{ height:'35px', width:'35px'}}>
+                    <CIcon name="cil-magnifying-glass" />
+                  </CButton>
+                  <CButton color="dark" variant="outline" 
+                  style={{ height:'35px', width:'35px', marginLeft:5}}
+                  onClick={()=>{reset()}}
+                  >
+                    <FaSync />
+                  </CButton>
+                </div>
+              
               </CInputGroupAppend>
-              <CButton color="warning" variant="outline" 
-              style={{borderRadius:'30px', height:'35px', width:'35px'}}
-              onClick={()=>{reset()}}
-              >
-                  <FaSync />
-                </CButton>
+              
             </CInputGroup>
           </CCol>
-        </CRow>
-        {/* <hr /> */}
-      </CContainer>
+
+    
       </Form>  
    
       )

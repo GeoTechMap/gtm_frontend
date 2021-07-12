@@ -8,6 +8,15 @@ import { useState } from "react";
 import { Link } from 'react-router-dom';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import "./styles.scss";
+import "leaflet-fullscreen/dist/Leaflet.fullscreen.js";
+import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
+import {
+  CLink,
+  CButton,
+} from '@coreui/react';
+import CIcon from '@coreui/icons-react';
+
+import GtmTab from "../../../../containers/GtmNav";
 
     const CarteContent = (props) => {
     const [globalData, setGlonbalData] = useContext(EssaiContext);
@@ -20,41 +29,32 @@ import "./styles.scss";
       options: {}
     });
     const blueIcon = new LeafIcon({
-      iconUrl:
-        "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|abcdef&chf=a,s,ee00FFFF"
-    }),
-    greenIcon = new LeafIcon({
-      iconUrl:
-        "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|2ecc71&chf=a,s,ee00FFFF"
-    });
+    //__DÉFINITION DES MARQUEURS POUR LES PRINCIPAUX TYPES D'ESSAIS
+        iconUrl:
+            "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|abcdef&chf=a,s,ee00FFFF"
+        }),
+        greenIcon = new LeafIcon({
+          iconUrl:
+            "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|2ecc71&chf=a,s,ee00FFFF"
+        });
+    //__DÉFINITION DES MARQUEURS POUR LES PRINCIPAUX TYPES D'ESSAIS
     const [icon, setIcon] = useState(blueIcon);
-    const changeIconColor = (id) => {
-      if (id == 3) {
-        setIcon((current) => (current = blueIcon));
-        
-      } else {
-        setIcon((current) => (current = greenIcon));
-      }
+    const selectIconBaseOnColorCode = (colorCode) => {
+     const icon = new LeafIcon({
+        iconUrl:
+          `https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|${colorCode}&chf=a,s,ee00FFFF`
+      });
       return icon
     };
-
-
-    // const [typeEssais, setTypeEssais] = useContext(CounterContext);
-    //const [ activeCrime, setActiveCrime] = React.useState(null);
-  //   const fetcher = (...args) => fetch(...args).then(response => response.json());
-  //   const url = 
-  //   "http://localhost:8080/api/essais"
-  //   // "https://data.police.uk/api/crimes-street/all-crime?lat=52.6297296&lng=-1.1315927&date=2019-10"
-  //  const { data, error } = useSwr(url, {fetcher });
-
-  //  const essais = data && !error ? data.slice(0,100): [];
 
     const position = [51.505, -0.09]
   return (
   <div>
-    {/* <Search /> */}
+    <GtmTab />
+    
        <MapContainer 
          className="markercluster-map"
+         fullscreenControl={true}
        style={{height:'70vh', width:'100%'}} 
        center={[19.0558, -73.0513]} 
        zoom={8}
@@ -65,7 +65,9 @@ import "./styles.scss";
       attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     /> */}
-    
+       
+
+
       <LayersControl position="topright">
         <LayersControl.BaseLayer name="OpenStreetMap.BlackAndWhite">
           <TileLayer
@@ -73,6 +75,25 @@ import "./styles.scss";
             url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
           />
         </LayersControl.BaseLayer>
+        <LayersControl.BaseLayer name="CyclOSM - Open Bicycle render">
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png"
+          />
+        </LayersControl.BaseLayer>
+        <LayersControl.BaseLayer name="Esri.DeLorme">
+          <TileLayer
+            attribution='Tiles &copy; Esri &mdash; Copyright: &copy;2012 DeLorme'
+            url="https://server.arcgisonline.com/ArcGIS/rest/services/Specialty/DeLorme_World_Base_Map/MapServer/tile/{z}/{y}/{x}"
+          />
+        </LayersControl.BaseLayer>
+        <LayersControl.BaseLayer name="Esri_WorldImagery ">
+          <TileLayer
+            attribution='Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+            url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+          />
+        </LayersControl.BaseLayer>
+  
         <LayersControl.BaseLayer  name="OpenTopoMap">
           <TileLayer
             attribution='Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
@@ -110,7 +131,8 @@ import "./styles.scss";
                 position={[essai.position.latitude, 
                 essai.position.longitude]}
              
-                icon={typeEssai.id == 4 ? blueIcon : greenIcon}
+                // icon={typeEssai.id == 4 ? blueIcon : greenIcon}
+                icon={selectIconBaseOnColorCode(typeEssai.codeCouleur)}
                 >
               <Popup 
                   position={[essai.position.latitude, essai.position.longitude]}
@@ -118,18 +140,27 @@ import "./styles.scss";
               <div>
                       <h5><strong>Résultat de l'essai: {essai.id}</strong></h5>
                       <ul>
-                          <li><strong>Nom du projet:</strong> ...</li>
-                          <li><strong>Institution:</strong>{essai.institution.nom} ({essai.institution.sigle})</li>
                           <li><strong>Type d'essai:</strong> {typeEssai.nom}</li>
+                          <li>
+                          <details>
+                            <summary><strong>Institution:</strong>{essai.institution.nom} ({essai.institution.sigle})</summary>
+                            <ul>
+                              <li>Email : {essai.institution.email}</li>
+                              <li>Téléphone : {essai.institution.telephone1}</li>
+                              <li>Adresse : {essai.institution.adresse}</li>
+                              <li>À propos : {essai.institution.description}</li>
+                            </ul>
+                          </details>
+                          </li>
                           <li><strong>Latitude:</strong> {essai.position.latitude}</li>
                           <li><strong>Longitude:</strong> {essai.position.longitude}</li>
                           <li><strong>Altitude:</strong> {essai.position.altitude}</li>
                           <li><strong>Méthode:</strong> ...</li>
-                          <li><strong>Résultat: </strong><a href={essai.fichier.lien}>Voir document</a></li>
-                          <li><strong>Date de réalisation:</strong> {essai.createdDate}</li>
+                          {/* <li><strong>Résultat: </strong><a href={essai.fichier.lien}>Voir document</a></li> */}
+                          <li><strong>Date de réalisation:</strong> {essai.dateRealisation}</li>
                           <li onClick={() => handleOnClick(props.essai)}><Link 
                           to={`/pdf/${essai.fichier.id}`} 
-                          >Voir PDF
+                          >Résultats
                           </Link></li>
                       </ul>
               </div>

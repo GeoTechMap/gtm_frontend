@@ -17,8 +17,8 @@ const _nav =  [
   },
   {
     _tag: 'CSidebarNavItem',
-    name: 'Echelle',
-    to: '/dashboard',
+    name: 'Legende',
+    to: '/legende',
     icon: <CIcon name="cil-drop" customClasses="c-sidebar-nav-icon"/>,
   },
   {
