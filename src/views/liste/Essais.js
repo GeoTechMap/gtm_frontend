@@ -28,13 +28,13 @@ import GtmTab from "../../containers/GtmNav";
   }
 
   const fields = [
-    { key: 'id', label:'ID', _style: { width: '2%'} },
-    { key: 'typeEssai', label:'Type d\'essai', _style: { width: '20%'} },
-    { key: 'institution', label:'Institution', _style: { width: '20%'} },
+    { key: 'idEssai', label:'ID', _style: { width: '2%'} },
+    { key: 'nomTypeEssai', label:'Type d\'essai', _style: { width: '20%'} },
+    { key: 'nomInstitution', label:'Institution', _style: { width: '20%'} },
     // { key: 'departement', label:'Département', _style: { width: '20%'} },
     // { key: 'adresse', label:'Adresse', _style: { width: '20%'} },
-    // { key: 'fichier', label:'Fichier', _style: { width: '20%'} },
-    { key: 'createdDate', label:'Date de création', _style: { width: '10%'} },
+    { key: 'nomFichier', label:'Fichier', _style: { width: '20%'} },
+    { key: 'dateRealisationEssai', label:'Date de réalisation', _style: { width: '10%'} },
     {
       key: 'show_details',
       label: 'Actions',
@@ -123,71 +123,12 @@ import GtmTab from "../../containers/GtmNav";
               </td>
               )
           },
-          'typeEssai':
-          (item)=>{
-            return (
-              <td>{item.typeEssai ? item.typeEssai.nom : ''}</td>
-              )
-          },
-          'institution':
-          (item)=>{
-            return (
-              <td>{item.institution.nom} ({item.institution.sigle})</td>
-              )
-          },
-          // 'fichier':
-          // (item)=>{
-          //   return (
-          //     <td>{item.fichier.nom}</td>
-          //     )
-          // },
-          // 'departement':
-          // (item)=>{
-          //   return (
-          //     <td>{item.position.departement}</td>
-          //     )
-          // },
-          // 'adresse':
-          // (item)=>{
-          //   return (
-          //     <td>{item.position.adresse}</td>
-          //     )
-          // },
-          'latitude':
-          (item)=>{
-            return (
-              <td>{item.latitude} </td>
-              )
-          },
-          'longitude':
-          (item)=>{
-            return (
-              <td>{item.longitude} </td>
-              )
-          },
-          'altitude':
-          (item)=>{
-            return (
-              <td>{item.altitude} </td>
-              )
-          },
+        
         'details':
             (item, index)=>{
               return (
               <CCollapse show={details.includes(index)}>
                 <Test essai = {item} />
-                {/* {globalData.connectedUser.institution.id === item.institution.id ?
-                <CCardBody>
-                  <a href={`/#/tests/edit/${item.id}`}> 
-                    <CButton size="sm" color="info">
-                      Modifier
-                    </CButton>
-                  </a>
-                    <CButton size="sm" color="danger" className="ml-1" onClick= {() =>{onDelete(item.id)}}>
-                      Supprimmer
-                    </CButton>
-                </CCardBody>
-                 :'' } */}
               </CCollapse>
             )
           }

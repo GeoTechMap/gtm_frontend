@@ -4,12 +4,14 @@ import SinglePagePDFViewer from "./single-page";
 import AllPagesPDFViewer from "./all-pages";
 import "./styles.css";
 import GtmTab from "../../../../containers/GtmNav";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const LoadFromBase64Example = ({match}) => {
 
-
+    const [loadingState, setLoadingState] = useState(false);
     const [data, setData] = useState({})
     useEffect(() => {
+        setLoadingState(true);
         fetch(`http://localhost:8080/api/file/info?id=${match.params.id}`)
         .then(response => response.json())
         .then(data =>   {
@@ -24,8 +26,10 @@ const LoadFromBase64Example = ({match}) => {
                 })})
                 .then(res => res.json())
                 .then(res => setData(res))
+                .then(() => setLoadingState(false))
                 .catch((error) => {
                     console.error('Error:', error);
+                    setLoadingState(false);
                   });
        return data;
      })
@@ -42,6 +46,7 @@ const LoadFromBase64Example = ({match}) => {
         // </div>
         <div className="App">
             <GtmTab />
+            {/* <ClipLoader loading={loadingState} size={35} /> */}
         <SinglePagePDFViewer pdf={`data:application/pdf;base64,${data.base64File}`}  />
       </div>
   

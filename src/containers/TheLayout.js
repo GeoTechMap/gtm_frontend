@@ -8,6 +8,7 @@ import {
 } from './index';
 import {
   CCol,
+  CLink,
   CRow
 } from '@coreui/react';
 import Search from '../views/dashboard/carte/Search';
@@ -19,8 +20,14 @@ const TheLayout = () => {
     <>
         <CRow className="d-flex justify-content-center" >
         <div style={{   textAlign: 'center'}} >
-          <h1>GeoTechMap</h1>
-          <p>Un outil d'aide à la décision dans le domaine géotechnique.</p>
+          <h1 style={{color:'#9e0059'}}>GeoTechMap</h1>
+          <p>Un outil d'aide à la décision dans le domaine géotechnique !</p>
+          <p>Cette carte montre les emplacements des essais géotechniques réalisés sur le territoire
+            haïtien.
+            Vous avez accès aux <CLink to="/liste"><strong style={{color:'#9e0059'}}>données géotechniques</strong></CLink> 
+            effectuées par diverses entreprises évoluant dans ce domaine.<br />
+            <strong style={{color:'#9e0059'}}>Les données de ce site ne remplacent en aucun cas les études géotechniques.</strong>
+            </p>
         </div>
         </CRow>
 

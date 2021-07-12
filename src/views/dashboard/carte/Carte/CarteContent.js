@@ -140,18 +140,27 @@ import GtmTab from "../../../../containers/GtmNav";
               <div>
                       <h5><strong>Résultat de l'essai: {essai.id}</strong></h5>
                       <ul>
-                          <li><strong>Nom du projet:</strong> ...</li>
-                          <li><strong>Institution:</strong>{essai.institution.nom} ({essai.institution.sigle})</li>
                           <li><strong>Type d'essai:</strong> {typeEssai.nom}</li>
+                          <li>
+                          <details>
+                            <summary><strong>Institution:</strong>{essai.institution.nom} ({essai.institution.sigle})</summary>
+                            <ul>
+                              <li>Email : {essai.institution.email}</li>
+                              <li>Téléphone : {essai.institution.telephone1}</li>
+                              <li>Adresse : {essai.institution.adresse}</li>
+                              <li>À propos : {essai.institution.description}</li>
+                            </ul>
+                          </details>
+                          </li>
                           <li><strong>Latitude:</strong> {essai.position.latitude}</li>
                           <li><strong>Longitude:</strong> {essai.position.longitude}</li>
                           <li><strong>Altitude:</strong> {essai.position.altitude}</li>
                           <li><strong>Méthode:</strong> ...</li>
-                          <li><strong>Résultat: </strong><a href={essai.fichier.lien}>Voir document</a></li>
-                          <li><strong>Date de réalisation:</strong> {essai.createdDate}</li>
+                          {/* <li><strong>Résultat: </strong><a href={essai.fichier.lien}>Voir document</a></li> */}
+                          <li><strong>Date de réalisation:</strong> {essai.dateRealisation}</li>
                           <li onClick={() => handleOnClick(props.essai)}><Link 
                           to={`/pdf/${essai.fichier.id}`} 
-                          >Voir PDF
+                          >Résultats
                           </Link></li>
                       </ul>
               </div>

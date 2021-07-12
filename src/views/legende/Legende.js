@@ -31,7 +31,7 @@ const Legende = () => {
            <img height={20}
            alt={`icone du type d\'essai`}
            src={`https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|${typeEssai.codeCouleur}&chf=a,s,ee00FFFF`}/>
-           _________: {typeEssai.nom} ({typeEssai.description})
+           &#9; {typeEssai.nom} ({typeEssai.description})
            </li>
          ))}
           
