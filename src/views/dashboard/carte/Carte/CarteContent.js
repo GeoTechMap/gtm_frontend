@@ -17,6 +17,7 @@ import {
 import CIcon from '@coreui/icons-react';
 
 import GtmTab from "../../../../containers/GtmNav";
+import { v4 as uuidv4 } from 'uuid';
 
     const CarteContent = (props) => {
     const [globalData, setGlonbalData] = useContext(EssaiContext);
@@ -120,6 +121,7 @@ import GtmTab from "../../../../containers/GtmNav";
     <LayersControl.Overlay checked name={typeEssai.nom}> 
     <LayerGroup>
     <MarkerClusterGroup
+            key={uuidv4()} 
             spiderfyDistanceMultiplier={1}
             showCoverageOnHover={false}
             maxClusterRadius={20}
@@ -185,19 +187,6 @@ import GtmTab from "../../../../containers/GtmNav";
     )} 
      
     </LayersControl>
-    {/* <MarkerClusterGroup>
-        <Marker position={[49.8397, 24.0297]} >
-
-        <Popup 
-                  position={[49.8397, 24.0297]}
-                  > <div><h1>hciusdhdpiuhiudhiew</h1></div></Popup>   <Tooltip>lkkkllkkl</Tooltip>
-        </Marker>
-        <Marker position={[52.2297, 21.0122]} >\ <Popup 
-                  position={[49.8397, 24.0297]}
-                  ><div><h1>hciusdhdpiuhiudhiew</h1></div></Popup>  <Tooltip>lkkkllkkl</Tooltip>
-                  </Marker>
-        <Marker position={[51.5074, -0.0901]} />
-      </MarkerClusterGroup> */}
   </MapContainer>
   </div>
    

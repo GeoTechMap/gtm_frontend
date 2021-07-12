@@ -4,10 +4,11 @@ import urgeo from '../assets/images/URGEO_LOGO_03.png';
 import kayNouTek from '../assets/images/logo_kay_nou_tek.jpg';
 import ueh from '../assets/images/ueh.jpeg';
 import fds from '../assets/images/logoFDS.jpg';
-import mbds from '../assets/images/logo_mbds.jpeg';
+import mbds from '../assets/images/mbds.png';
 import gtm from '../assets/images/logo2.jpg';
-import suisse from '../assets/images/suisse.png';
-import uniq from '../assets/images/uniq.png';
+import suisse from '../assets/images/suisse.jpg';
+import uniq from '../assets/images/uniq.PNG';
+import epfl from '../assets/images/EPFL.png';
 
 const TheFooter = () => {
   return (
@@ -25,6 +26,7 @@ const TheFooter = () => {
                      <img src={uniq} width={"95px"} height={"30px"} style={{marginRight:10, marginTop:5}} />
                      <img src={gtm} width={"100px"} height={"30px"} style={{marginRight:10, marginTop:5}} />
                       <img src={kayNouTek} width={"40px"} height={"30px"} style={{marginRight:10, marginTop:5}} />
+                      <img src={epfl} width={"100px"} height={"30px"} style={{marginRight:10, marginTop:5}} />
               </div>
 
               <div class="d-flex justify-content-start" style={{marginTop:15}}>
