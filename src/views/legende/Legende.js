@@ -27,12 +27,17 @@ const Legende = () => {
       <CCol xs="12" md="12" className="mb-4">
          <ul>
          {globalData.essais.map((typeEssai, key) => (
-            <li>
-           <img height={20}
-           alt={`icone du type d\'essai`}
-           src={`https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|${typeEssai.codeCouleur}&chf=a,s,ee00FFFF`}/>
-           &#9; {typeEssai.nom} ({typeEssai.description})
-           </li>
+           <div>
+              <details>
+                  <summary> <img height={20}
+                alt={`icone du type d\'essai`}
+                src={`https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|${typeEssai.codeCouleur}&chf=a,s,ee00FFFF`}/>
+                : <strong> {typeEssai.nom}</strong></summary>
+                  {typeEssai.description}
+            </details>
+            <br />
+           </div>
+            
          ))}
           
          </ul>
