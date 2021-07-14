@@ -30,6 +30,15 @@ const About = () => {
 
            <p>À noter que c'est un outil d'aide à la décision qui ne ramplace pas les consultations 
              auprès des entreprises géotechniques.</p>
+           <p><strong>Contact</strong></p>
+           <p>Vous êtes une institution détennant des données géotechniques et 
+             désirant les partager avec le public, contactez-nous (et envoyez-nous
+            <a href="/files/formulaire.pdf" target='_blank' > ce formulaire </a> rempli) via:  
+             <a href="mailto:kevindubuche@gmail.com"> urgeo@mail.com </a> 
+             ou par téléphone au +509 36323548 / +509 45793567.
+           </p>
+           
+
       </CCol>
     </CRow>
   )
