@@ -157,7 +157,7 @@ import { v4 as uuidv4 } from 'uuid';
                           <li><strong>Latitude:</strong> {essai.position.latitude}</li>
                           <li><strong>Longitude:</strong> {essai.position.longitude}</li>
                           <li><strong>Altitude:</strong> {essai.position.altitude}</li>
-                          <li><strong>Méthode:</strong> ...</li>
+                          {/* <li><strong>Méthode:</strong> ...</li> */}
                           {/* <li><strong>Résultat: </strong><a href={essai.fichier.lien}>Voir document</a></li> */}
                           <li><strong>Date de réalisation:</strong> {essai.dateRealisation}</li>
                           <li onClick={() => handleOnClick(props.essai)}><Link 
