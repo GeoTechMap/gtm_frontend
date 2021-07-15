@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import SinglePagePDFViewer from "./single-page";
-import AllPagesPDFViewer from "./all-pages";
+// import AllPagesPDFViewer from "./all-pages";
 import "./styles.css";
 import GtmTab from "../../../../containers/GtmNav";
-import ClipLoader from "react-spinners/ClipLoader";
+// import ClipLoader from "react-spinners/ClipLoader";
 
 const LoadFromBase64Example = ({match}) => {
 

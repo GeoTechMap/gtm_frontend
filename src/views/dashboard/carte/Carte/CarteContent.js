@@ -1,21 +1,14 @@
-import React, { useContext, useEffect } from "react";
-import { Tooltip, Marker, Popup, TileLayer, MapContainer, LayersControl, LayerGroup, useMap, Circle} from 'react-leaflet';
+import React, { useContext } from "react";
+import { Tooltip, Marker, Popup, TileLayer, MapContainer, LayersControl, LayerGroup} from 'react-leaflet';
  //import {Icon } from 'leaflet';
 
 import { EssaiContext } from "../../../../EssaisContext";
 import * as L from "leaflet";
-import { useState } from "react";
 import { Link } from 'react-router-dom';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import "./styles.scss";
 import "leaflet-fullscreen/dist/Leaflet.fullscreen.js";
 import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
-import {
-  CLink,
-  CButton,
-} from '@coreui/react';
-import CIcon from '@coreui/icons-react';
-
 import GtmTab from "../../../../containers/GtmNav";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -29,17 +22,17 @@ import { v4 as uuidv4 } from 'uuid';
     const LeafIcon = L.Icon.extend({
       options: {}
     });
-    const blueIcon = new LeafIcon({
     //__DÉFINITION DES MARQUEURS POUR LES PRINCIPAUX TYPES D'ESSAIS
-        iconUrl:
-            "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|abcdef&chf=a,s,ee00FFFF"
-        }),
-        greenIcon = new LeafIcon({
-          iconUrl:
-            "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|2ecc71&chf=a,s,ee00FFFF"
-        });
+    // const blueIcon = new LeafIcon({
+    //     iconUrl:
+    //         "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|abcdef&chf=a,s,ee00FFFF"
+    //     }),
+    //     greenIcon = new LeafIcon({
+    //       iconUrl:
+    //         "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|2ecc71&chf=a,s,ee00FFFF"
+    //     });
     //__DÉFINITION DES MARQUEURS POUR LES PRINCIPAUX TYPES D'ESSAIS
-    const [icon, setIcon] = useState(blueIcon);
+    // const [icon, setIcon] = useState(blueIcon);
     const selectIconBaseOnColorCode = (colorCode) => {
      const icon = new LeafIcon({
         iconUrl:
@@ -48,7 +41,7 @@ import { v4 as uuidv4 } from 'uuid';
       return icon
     };
 
-    const position = [51.505, -0.09]
+    // const position = [51.505, -0.09]
   return (
   <div>
     <GtmTab />

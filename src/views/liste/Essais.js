@@ -1,9 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
-  CCardBody,
   CDataTable,
   CButton,
   CCollapse,
+  CSelect,
+  CPagination,
+  CRow,
+  CCol,
 } from '@coreui/react'
 import Test from "./Essai";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -63,17 +66,35 @@ import GtmTab from "../../containers/GtmNav";
   useEffect(() => {
     setLoadingState(true);
 
-    fetch(`http://localhost:8080/api/essais/`)
+    fetch(`http://localhost:8080/api/essais/fetch_with_pagination?pageSize=5&pageNumber=0`)
       .then((response) => response.json())
-      .then((json) => setData(json))
+      .then((json) => setData(json.essaiDetailsDto))
       .then(() => setLoadingState(false))
       .catch((error) => {
         console.log(error);
         setLoadingState(false);
       }); 
+
+      fetch(`http://localhost:8080/api/essais/count`)
+      .then((response) => response.json())
+      .then((json) => setTotalEssais(json))
+      .catch((error) => {
+        console.log(error);
+      }); 
     
   }, []);
 
+  const fetch_with_pagination = (pageSize, pageNumber) => {
+    // console.log('fetch pagiination')
+    fetch(`http://localhost:8080/api/essais/fetch_with_pagination?pageSize=${pageSize}&pageNumber=${pageNumber > 0 ? pageNumber : 0}`)
+    .then((response) => response.json())
+    .then((json) => setData(json.essaiDetailsDto))
+    .then(() => setLoadingState(false))
+    .catch((error) => {
+      console.log(error);
+      setLoadingState(false);
+    }); 
+  }
   const [loadingState, setLoadingState] = useState(false);
 
  
@@ -85,6 +106,9 @@ import GtmTab from "../../containers/GtmNav";
 
     //   }
   
+    const [pageSize, setPageSize] = useState(5)
+    const [currentPage, setActivePage] = useState(0);
+    const [totalEssais, setTotalEssais] = useState(0);
 
   return (
     <div>
@@ -94,18 +118,34 @@ import GtmTab from "../../containers/GtmNav";
             {/* <CButton variant="outline" color="success">Ajouter</CButton> */}
             <ClipLoader loading={loadingState} size={25} />
          </a>
+         <CRow style={{float:'right'}}>
+        <CCol > Essais par page
+            <CSelect name=' Essais par page' onChange={(e)=>{
+                setPageSize(parseInt(e.target.value));
+                  fetch_with_pagination(e.target.value <= totalEssais ? e.target.value : totalEssais, 0);
+              
+              }}
+              className={`form-control shadow-none `}>
+                      <option value={5}>5</option>
+                        <option value={10}>10</option>
+                        <option value={20}>20</option>
+                        <option value={50}>50</option>
+              </CSelect>
+          </CCol>
+          </CRow>
             
           <CDataTable
       items={data ? data : null}
       fields={fields}
-      columnFilter
+      responsive
+      outlined
       tableFilter
-      footer
-      itemsPerPageSelect
-      itemsPerPage={5}
+      itemsPerPage ={pageSize}
       hover
       sorter
-      pagination
+      // footer
+      // itemsPerPageSelect
+      // pagination
       scopedSlots = {{
         'show_details':
           (item, index)=>{
@@ -134,6 +174,14 @@ import GtmTab from "../../containers/GtmNav";
           }
       }}
     />
+        <CPagination
+      activePage={currentPage}
+      pages={totalEssais/pageSize}
+      onActivePageChange={(pageNumber) =>{
+        setActivePage(pageNumber);
+        fetch_with_pagination(pageSize,pageNumber-1);
+      } }
+    ></CPagination>
     </div>
     
   )

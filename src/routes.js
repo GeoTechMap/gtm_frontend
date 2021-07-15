@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'));
-const Liste = React.lazy(() => import('./views/liste/Liste'));
+// const Liste = React.lazy(() => import('./views/liste/Liste'));
 const About = React.lazy(() => import('./views/about/About'));
 const Legende = React.lazy(() => import('./views/legende/Legende'));
 const PDF = React.lazy(() => import('./views/dashboard/carte/Carte/PDF'));
