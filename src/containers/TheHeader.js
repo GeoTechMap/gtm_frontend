@@ -3,22 +3,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
   CHeader,
   CToggler,
-  CHeaderBrand,
   CHeaderNav,
-  CHeaderNavItem,
-  CHeaderNavLink,
-  CSubheader,
-  CBreadcrumbRouter,
   CLink,
   CButton,
   CButtonGroup
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react';
-
-// routes config
-import routes from '../routes';
-
-
 import Search from '../views/dashboard/carte/Search';
 
 

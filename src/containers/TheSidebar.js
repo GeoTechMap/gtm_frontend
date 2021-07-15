@@ -16,7 +16,7 @@ import CIcon from '@coreui/icons-react'
 
 // sidebar nav config
 import navigation from './_nav'
-import logo from './target.svg';
+// import logo from './target.svg';
 
 const TheSidebar = () => {
   const dispatch = useDispatch()

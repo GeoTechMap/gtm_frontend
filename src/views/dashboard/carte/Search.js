@@ -1,13 +1,11 @@
-import React ,{useState, useEffect,useContext} from 'react';
+import React ,{useContext} from 'react';
 import {Formik, Form} from 'formik';
 import * as Yup from 'yup';
 import {
   CButton,
   CCol,
-  CContainer,
   CInputGroup,
   CInputGroupAppend,
-  CRow
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react';
 import { SearchTextField } from './SearchTextField';
@@ -15,8 +13,6 @@ import { EssaiContext } from "../../../EssaisContext";
 import { FaSync } from "react-icons/fa";
 
 const Search = () => {
-
-  const [searchContent, setSearchContent] = useState(null);
   const [globalData, setGlobalData] = useContext(EssaiContext);
 
   const initVal ={

@@ -1,17 +1,13 @@
 import React from 'react'
 import {
   TheContent,
-  TheSidebar,
   TheFooter,
-  TheHeader,
-
 } from './index';
 import {
   CCol,
   CLink,
   CRow
 } from '@coreui/react';
-import Search from '../views/dashboard/carte/Search';
 import Tabs from './Tabs';
 
 const TheLayout = () => {
