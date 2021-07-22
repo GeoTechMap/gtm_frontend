@@ -31,7 +31,7 @@ import GtmTab from "../../containers/GtmNav";
   }
 
   const fields = [
-    { key: 'idEssai', label:'ID', _style: { width: '2%'} },
+    { key: 'codeEssai', label:'Code', _style: { width: '2%'} },
     { key: 'nomTypeEssai', label:'Type d\'essai', _style: { width: '20%'} },
     { key: 'nomInstitution', label:'Institution', _style: { width: '20%'} },
     // { key: 'departement', label:'Département', _style: { width: '20%'} },
@@ -176,7 +176,7 @@ import GtmTab from "../../containers/GtmNav";
     />
         <CPagination
       activePage={currentPage}
-      pages={totalEssais/pageSize}
+      pages={Math.floor(totalEssais/pageSize)}
       onActivePageChange={(pageNumber) =>{
         setActivePage(pageNumber);
         fetch_with_pagination(pageSize,pageNumber-1);

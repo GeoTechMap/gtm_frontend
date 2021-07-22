@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import { Document, Page } from "react-pdf";
 import ClipLoader from "react-spinners/ClipLoader";
 
+import { pdfjs } from 'react-pdf';
+
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
+
 export default function SinglePage(props) {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1); //setting 1 to show fisrt page

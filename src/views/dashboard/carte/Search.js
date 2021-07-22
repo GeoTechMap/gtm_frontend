@@ -21,7 +21,7 @@ const Search = () => {
   const validate = Yup.object({
     searchContent: Yup.string()
     .max(45,"Maximum 45 caractères")
-    .required("Champs obligatire"),        
+          
   })
 
   const reset = () => {
@@ -41,12 +41,19 @@ const Search = () => {
     validationSchema= {validate}
     onSubmit={values => {
     //  console.log(values)
-
-      fetch(`http://localhost:8080/api/essais/search?mot_cle=${values.searchContent}`)
+      if(values.searchContent.length > 0){
+        fetch(`http://localhost:8080/api/essais/search?mot_cle=${values.searchContent.toLowerCase()}`)
+          .then((response) => response.json())
+          .then((json) => setGlobalData({...globalData,
+            essais:json}
+            )); 
+      }else {
+        fetch('http://localhost:8080/api/type_essais')
         .then((response) => response.json())
         .then((json) => setGlobalData({...globalData,
           essais:json}
           )); 
+      }
 
 
 
