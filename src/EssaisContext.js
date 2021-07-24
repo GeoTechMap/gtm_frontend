@@ -13,7 +13,7 @@ export const EssaiContextProvider = props => {
   });
 
   useEffect(() => {
-    fetch('http://localhost:8080/api/type_essais')
+    fetch(`${process.env.REACT_APP_API_URL}/api/type_essais`)
       .then((response) => response.json())
       .then((json) => setGlobalData({...globalData,
         essais:json}

@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Tooltip, Marker, Popup, TileLayer, MapContainer, LayersControl, LayerGroup} from 'react-leaflet';
+import React, { useContext , useEffect} from "react";
+import { Tooltip, Marker, Popup, TileLayer, MapContainer, LayersControl, LayerGroup, useMap} from 'react-leaflet';
  //import {Icon } from 'leaflet';
 
 import { EssaiContext } from "../../../../EssaisContext";
@@ -11,6 +11,9 @@ import "leaflet-fullscreen/dist/Leaflet.fullscreen.js";
 import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
 import GtmTab from "../../../../containers/GtmNav";
 import { v4 as uuidv4 } from 'uuid';
+// import zipUrl from "./limitesCommunes.zip";
+// import Shapefile from "./ShapeFile";
+// import shp from "shpjs";
 
     const CarteContent = (props) => {
     const [globalData, setGlonbalData] = useContext(EssaiContext);
@@ -22,6 +25,10 @@ import { v4 as uuidv4 } from 'uuid';
     const LeafIcon = L.Icon.extend({
       options: {}
     });
+
+
+
+     
     //__DÉFINITION DES MARQUEURS POUR LES PRINCIPAUX TYPES D'ESSAIS
     // const blueIcon = new LeafIcon({
     //     iconUrl:
@@ -41,7 +48,7 @@ import { v4 as uuidv4 } from 'uuid';
       return icon
     };
 
-    // const position = [51.505, -0.09]
+     const position = [18.843913,-71.730198]
   return (
   <div>
     <GtmTab />
@@ -50,16 +57,10 @@ import { v4 as uuidv4 } from 'uuid';
          className="markercluster-map"
          fullscreenControl={true}
        style={{height:'70vh', width:'100%'}} 
-       center={[19.0558, -73.0513]} 
+       center={position} 
        zoom={8}
       //  minZoom={7}
        scrollWheelZoom={true}>
-    
-    {/* <TileLayer
-      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    /> */}
-       
 
 
       <LayersControl position="topright">
@@ -180,6 +181,8 @@ import { v4 as uuidv4 } from 'uuid';
     )} 
      
     </LayersControl>
+
+
   </MapContainer>
   </div>
    

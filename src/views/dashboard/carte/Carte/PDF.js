@@ -26,13 +26,16 @@ const LoadFromBase64Example = ({match}) => {
                 })})
                 .then(res => res.json())
                 .then(res => setData(res))
-                .then(() => setLoadingState(false))
                 .catch((error) => {
                     console.error('Error:', error);
-                    setLoadingState(false);
                   });
        return data;
      })
+     .then(() => setLoadingState(false))
+     .catch((error) => {
+       console.log(error);
+       setLoadingState(false);
+     }); 
       
         
       
@@ -47,7 +50,7 @@ const LoadFromBase64Example = ({match}) => {
         <div className="App">
             <GtmTab />
             {/* <ClipLoader loading={loadingState} size={35} /> */}
-        <SinglePagePDFViewer pdf={`data:application/pdf;base64,${data.base64File}`}  />
+            <SinglePagePDFViewer pdf={`data:application/pdf;base64,${data.base64File}`}  />
       </div>
   
     );
