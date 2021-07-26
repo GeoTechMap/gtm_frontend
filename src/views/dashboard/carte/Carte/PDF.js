@@ -15,7 +15,7 @@ const LoadFromBase64Example = ({match}) => {
         fetch(`${process.env.REACT_APP_API_URL}/api/file/info?id=${match.params.id}`)
         .then(response => response.json())
         .then(data =>   {
-            fetch(`${process.env.FILE_SERVER_URL}/api/file/getfile`, {
+            fetch(`${process.env.REACT_APP_FILE_SERVER_URL}/api/file/getfile`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json',
                 'Accept': 'application/json'},
