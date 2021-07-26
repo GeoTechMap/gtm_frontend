@@ -66,7 +66,7 @@ import GtmTab from "../../containers/GtmNav";
   useEffect(() => {
     setLoadingState(true);
 
-    fetch(`http://localhost:8080/api/essais/fetch_with_pagination?pageSize=5&pageNumber=0`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/essais/fetch_with_pagination?pageSize=5&pageNumber=0`)
       .then((response) => response.json())
       .then((json) => setData(json.essaiDetailsDto))
       .then(() => setLoadingState(false))
@@ -75,7 +75,7 @@ import GtmTab from "../../containers/GtmNav";
         setLoadingState(false);
       }); 
 
-      fetch(`http://localhost:8080/api/essais/count`)
+      fetch(`${process.env.REACT_APP_API_URL}/api/essais/count`)
       .then((response) => response.json())
       .then((json) => setTotalEssais(json))
       .catch((error) => {
@@ -86,7 +86,7 @@ import GtmTab from "../../containers/GtmNav";
 
   const fetch_with_pagination = (pageSize, pageNumber) => {
     // console.log('fetch pagiination')
-    fetch(`http://localhost:8080/api/essais/fetch_with_pagination?pageSize=${pageSize}&pageNumber=${pageNumber > 0 ? pageNumber : 0}`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/essais/fetch_with_pagination?pageSize=${pageSize}&pageNumber=${pageNumber > 0 ? pageNumber : 0}`)
     .then((response) => response.json())
     .then((json) => setData(json.essaiDetailsDto))
     .then(() => setLoadingState(false))

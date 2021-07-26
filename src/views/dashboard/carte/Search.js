@@ -26,7 +26,7 @@ const Search = () => {
 
   const reset = () => {
     window.location.reload();
-    // fetch('http://localhost:8080/api/type_essais')
+    // fetch('${process.env.REACT_APP_API_URL}/api/type_essais')
     // .then((response) => response.json())
     // .then((json) => setGlobalData({...globalData,
     //   essais:json}
@@ -42,13 +42,13 @@ const Search = () => {
     onSubmit={values => {
     //  console.log(values)
       if(values.searchContent.length > 0){
-        fetch(`http://localhost:8080/api/essais/search?mot_cle=${values.searchContent.toLowerCase()}`)
+        fetch(`${process.env.REACT_APP_API_URL}/api/essais/search?mot_cle=${values.searchContent.toLowerCase()}`)
           .then((response) => response.json())
           .then((json) => setGlobalData({...globalData,
             essais:json}
             )); 
       }else {
-        fetch('http://localhost:8080/api/type_essais')
+        fetch(`${process.env.REACT_APP_API_URL}/api/type_essais`)
         .then((response) => response.json())
         .then((json) => setGlobalData({...globalData,
           essais:json}
